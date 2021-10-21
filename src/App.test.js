@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, window } from '@testing-library/react';
 import App from './App';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
@@ -64,13 +64,17 @@ describe('This applies to App.js', () => {
 
 })
 
-// describe('This applies to MovieList.js', () => {
-//   it('should populate the movie entry on state after a successful API call', async () => {
-//     render(<App />)
+describe('This applies to MovieList.js', () => {
+  it('should navigate to the details page', async () => {
+    //arrange
+    render(<App />)
 
-//     // test code goes here
-//     let item = await screen.findByText(/Guardians of the Galaxy Vol. 2/i);
-//     expect(screen.getByText(/Guardians of the Galaxy Vol. 2/i)).toBeInTheDocument();
+    //act
+    fireEvent.click(screen.getByText(/Guardians of the Galaxy Vol. 2/i))
+    let url = window.location
 
-//   })
-// })
+    //Assert
+    //expect url to contain /movie id
+
+  })
+})
