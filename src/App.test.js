@@ -21,7 +21,22 @@ describe('This applies to App.js', () => {
             "year": "2017",
             "poster": "https://m.media-amazon.com/images/M/MV5BMTg2MzI1MTg3OF5BMl5BanBnXkFtZTgwNTU3NDA2MTI@._V1_SX300.jpg",
             "genre": "Action, Adventure, Comedy, Sci-Fi"
-          }]
+          },
+          {
+            "movieId": 2,
+            "metascore": "90",
+            "boxOffice": "N/A",
+            "rated": "PG",
+            "director": "George Lucas",
+            "title": "Star Wars: Episode IV - A New Hope",
+            "actors": "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing",
+            "response": "True",
+            "year": "1977",
+            "poster": "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+            "genre": "Action, Adventure, Fantasy, Sci-Fi"
+          }
+
+          ]
         ))
 
 
@@ -41,12 +56,21 @@ describe('This applies to App.js', () => {
 
   })
 
-
-
-  xtest('renders learn react link', () => {
+  test('renders movie poster image', async () => {
     render(<App />);
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
+    const imgElement = await (screen.findByRole('img'));
+    expect(screen.getByRole('img')).toBeInTheDocument();
   });
 
 })
+
+// describe('This applies to MovieList.js', () => {
+//   it('should populate the movie entry on state after a successful API call', async () => {
+//     render(<App />)
+
+//     // test code goes here
+//     let item = await screen.findByText(/Guardians of the Galaxy Vol. 2/i);
+//     expect(screen.getByText(/Guardians of the Galaxy Vol. 2/i)).toBeInTheDocument();
+
+//   })
+// })
