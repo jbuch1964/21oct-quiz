@@ -6,7 +6,7 @@ import { setupServer } from 'msw/node'
 
 describe('This applies to App.js', () => {
   const server = setupServer(
-    rest.get('http://localhost:3001/movies', (request, response, context) => {
+    rest.get('http://localhost:3001/movies/:1', (request, response, context) => {
       // response goes here
       return response(
         context.json(
