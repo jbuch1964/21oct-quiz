@@ -1,43 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import MovieList from './Components/MovieList';
 
 function App() {
 
   //state for movies
-  const [movies, setMovies] = useState();
-  //fetch movies from api
+  const [movies, setMovies] = useState([]);
 
+  //fetch movies from api
   useEffect(() => {
     let mount = true;
     const getMovies = async () => {
-      const getFetch = await fetch('http://localhost:3001/movies/:1');
-      let resJSON = await getFetch.json();
-      setMovies(resJSON);
+      const getFetch = await fetch('http://localhost:3001/movies/');
+      let resJson = await getFetch.json();
+      if (mount) {
+        setMovies(resJson);
+      }
     }
     getMovies();
-    //do the unmount thing
+    // console.log('movies from app', movies)
+
+    return (() => { mount = false })
 
   }, [])
 
   return (
     <div className="App">
       <header className="App-header">
-
+        <MovieList movies={movies} />
       </header>
     </div>
   );
 }
 
 export default App;
-
-// componentDidMount API call
-// useEffect(() => {
-//   const fetchData = async () => {
-//     const response = await fetch('http://52.26.193.201:3000/products/list');
-//     const result = await response.json();
-//     setProducts(result);
-//   };
-
-//   fetchData();
-// }, []);
